@@ -1,0 +1,241 @@
+2024/10/11-12:26:24.053684 50a4 RocksDB version: 8.10.0
+2024/10/11-12:26:24.053804 50a4 Compile date 2023-12-15 13:01:14
+2024/10/11-12:26:24.053840 50a4 DB SUMMARY
+2024/10/11-12:26:24.053866 50a4 Host name (Env):  HOME
+2024/10/11-12:26:24.053887 50a4 DB Session ID:  87L6IL3MLSPK4LGLX0SE
+2024/10/11-12:26:24.058696 50a4 CURRENT file:  CURRENT
+2024/10/11-12:26:24.058720 50a4 IDENTITY file:  IDENTITY
+2024/10/11-12:26:24.058948 50a4 MANIFEST file:  MANIFEST-000109 size: 106 Bytes
+2024/10/11-12:26:24.058960 50a4 SST files in ./storage\collections\conversation_history\0\segments\733e172a-4694-4ac4-a966-90659425f3b2\payload_index dir, Total Num: 0, files: 
+2024/10/11-12:26:24.058970 50a4 Write Ahead Log file in ./storage\collections\conversation_history\0\segments\733e172a-4694-4ac4-a966-90659425f3b2\payload_index: 000108.log size: 0 ; 
+2024/10/11-12:26:24.059084 50a4                         Options.error_if_exists: 0
+2024/10/11-12:26:24.059089 50a4                       Options.create_if_missing: 1
+2024/10/11-12:26:24.059093 50a4                         Options.paranoid_checks: 1
+2024/10/11-12:26:24.059097 50a4             Options.flush_verify_memtable_count: 1
+2024/10/11-12:26:24.059100 50a4          Options.compaction_verify_record_count: 1
+2024/10/11-12:26:24.059104 50a4                               Options.track_and_verify_wals_in_manifest: 0
+2024/10/11-12:26:24.059108 50a4        Options.verify_sst_unique_id_in_manifest: 1
+2024/10/11-12:26:24.059111 50a4                                     Options.env: 0000024EE9E98DA0
+2024/10/11-12:26:24.059116 50a4                                      Options.fs: WinFS
+2024/10/11-12:26:24.059119 50a4                                Options.info_log: 0000024EEFCC4970
+2024/10/11-12:26:24.059123 50a4                Options.max_file_opening_threads: 16
+2024/10/11-12:26:24.059126 50a4                              Options.statistics: 0000000000000000
+2024/10/11-12:26:24.059130 50a4                               Options.use_fsync: 0
+2024/10/11-12:26:24.059134 50a4                       Options.max_log_file_size: 1048576
+2024/10/11-12:26:24.059138 50a4                  Options.max_manifest_file_size: 1073741824
+2024/10/11-12:26:24.059142 50a4                   Options.log_file_time_to_roll: 0
+2024/10/11-12:26:24.059145 50a4                       Options.keep_log_file_num: 1
+2024/10/11-12:26:24.059149 50a4                    Options.recycle_log_file_num: 0
+2024/10/11-12:26:24.059152 50a4                         Options.allow_fallocate: 1
+2024/10/11-12:26:24.059156 50a4                        Options.allow_mmap_reads: 0
+2024/10/11-12:26:24.059159 50a4                       Options.allow_mmap_writes: 0
+2024/10/11-12:26:24.059163 50a4                        Options.use_direct_reads: 0
+2024/10/11-12:26:24.059166 50a4                        Options.use_direct_io_for_flush_and_compaction: 0
+2024/10/11-12:26:24.059170 50a4          Options.create_missing_column_families: 1
+2024/10/11-12:26:24.059173 50a4                              Options.db_log_dir: 
+2024/10/11-12:26:24.059177 50a4                                 Options.wal_dir: 
+2024/10/11-12:26:24.059180 50a4                Options.table_cache_numshardbits: 6
+2024/10/11-12:26:24.059183 50a4                         Options.WAL_ttl_seconds: 0
+2024/10/11-12:26:24.059187 50a4                       Options.WAL_size_limit_MB: 0
+2024/10/11-12:26:24.059191 50a4                        Options.max_write_batch_group_size_bytes: 1048576
+2024/10/11-12:26:24.059194 50a4             Options.manifest_preallocation_size: 4194304
+2024/10/11-12:26:24.059198 50a4                     Options.is_fd_close_on_exec: 1
+2024/10/11-12:26:24.059201 50a4                   Options.advise_random_on_open: 1
+2024/10/11-12:26:24.059205 50a4                    Options.db_write_buffer_size: 0
+2024/10/11-12:26:24.059208 50a4                    Options.write_buffer_manager: 0000024EEFCF44D0
+2024/10/11-12:26:24.059212 50a4         Options.access_hint_on_compaction_start: 1
+2024/10/11-12:26:24.059216 50a4           Options.random_access_max_buffer_size: 1048576
+2024/10/11-12:26:24.059219 50a4                      Options.use_adaptive_mutex: 0
+2024/10/11-12:26:24.059241 50a4                            Options.rate_limiter: 0000000000000000
+2024/10/11-12:26:24.059247 50a4     Options.sst_file_manager.rate_bytes_per_sec: 0
+2024/10/11-12:26:24.059251 50a4                       Options.wal_recovery_mode: 0
+2024/10/11-12:26:24.059254 50a4                  Options.enable_thread_tracking: 0
+2024/10/11-12:26:24.059258 50a4                  Options.enable_pipelined_write: 0
+2024/10/11-12:26:24.059262 50a4                  Options.unordered_write: 0
+2024/10/11-12:26:24.059265 50a4         Options.allow_concurrent_memtable_write: 1
+2024/10/11-12:26:24.059268 50a4      Options.enable_write_thread_adaptive_yield: 1
+2024/10/11-12:26:24.059272 50a4             Options.write_thread_max_yield_usec: 100
+2024/10/11-12:26:24.059275 50a4            Options.write_thread_slow_yield_usec: 3
+2024/10/11-12:26:24.059279 50a4                               Options.row_cache: None
+2024/10/11-12:26:24.059282 50a4                              Options.wal_filter: None
+2024/10/11-12:26:24.059286 50a4             Options.avoid_flush_during_recovery: 0
+2024/10/11-12:26:24.059289 50a4             Options.allow_ingest_behind: 0
+2024/10/11-12:26:24.059293 50a4             Options.two_write_queues: 0
+2024/10/11-12:26:24.059296 50a4             Options.manual_wal_flush: 0
+2024/10/11-12:26:24.059300 50a4             Options.wal_compression: 0
+2024/10/11-12:26:24.059304 50a4             Options.atomic_flush: 0
+2024/10/11-12:26:24.059307 50a4             Options.avoid_unnecessary_blocking_io: 0
+2024/10/11-12:26:24.059311 50a4                 Options.persist_stats_to_disk: 0
+2024/10/11-12:26:24.059314 50a4                 Options.write_dbid_to_manifest: 0
+2024/10/11-12:26:24.059318 50a4                 Options.log_readahead_size: 0
+2024/10/11-12:26:24.059321 50a4                 Options.file_checksum_gen_factory: Unknown
+2024/10/11-12:26:24.059325 50a4                 Options.best_efforts_recovery: 0
+2024/10/11-12:26:24.059328 50a4                Options.max_bgerror_resume_count: 2147483647
+2024/10/11-12:26:24.059332 50a4            Options.bgerror_resume_retry_interval: 1000000
+2024/10/11-12:26:24.059335 50a4             Options.allow_data_in_errors: 0
+2024/10/11-12:26:24.059339 50a4             Options.db_host_id: __hostname__
+2024/10/11-12:26:24.059342 50a4             Options.enforce_single_del_contracts: true
+2024/10/11-12:26:24.059346 50a4             Options.max_background_jobs: 2
+2024/10/11-12:26:24.059349 50a4             Options.max_background_compactions: -1
+2024/10/11-12:26:24.059353 50a4             Options.max_subcompactions: 1
+2024/10/11-12:26:24.059356 50a4             Options.avoid_flush_during_shutdown: 0
+2024/10/11-12:26:24.059360 50a4           Options.writable_file_max_buffer_size: 1048576
+2024/10/11-12:26:24.059363 50a4             Options.delayed_write_rate : 16777216
+2024/10/11-12:26:24.059367 50a4             Options.max_total_wal_size: 0
+2024/10/11-12:26:24.059371 50a4             Options.delete_obsolete_files_period_micros: 180000000
+2024/10/11-12:26:24.059380 50a4                   Options.stats_dump_period_sec: 600
+2024/10/11-12:26:24.059384 50a4                 Options.stats_persist_period_sec: 600
+2024/10/11-12:26:24.059387 50a4                 Options.stats_history_buffer_size: 1048576
+2024/10/11-12:26:24.059391 50a4                          Options.max_open_files: 256
+2024/10/11-12:26:24.059395 50a4                          Options.bytes_per_sync: 0
+2024/10/11-12:26:24.059398 50a4                      Options.wal_bytes_per_sync: 0
+2024/10/11-12:26:24.059402 50a4                   Options.strict_bytes_per_sync: 0
+2024/10/11-12:26:24.059406 50a4       Options.compaction_readahead_size: 2097152
+2024/10/11-12:26:24.059409 50a4                  Options.max_background_flushes: -1
+2024/10/11-12:26:24.059413 50a4 Options.daily_offpeak_time_utc: 
+2024/10/11-12:26:24.059417 50a4 Compression algorithms supported:
+2024/10/11-12:26:24.059421 50a4 	kZSTD supported: 0
+2024/10/11-12:26:24.059425 50a4 	kSnappyCompression supported: 1
+2024/10/11-12:26:24.059442 50a4 	kBZip2Compression supported: 0
+2024/10/11-12:26:24.059447 50a4 	kZlibCompression supported: 0
+2024/10/11-12:26:24.059450 50a4 	kLZ4Compression supported: 1
+2024/10/11-12:26:24.059453 50a4 	kXpressCompression supported: 0
+2024/10/11-12:26:24.059457 50a4 	kLZ4HCCompression supported: 1
+2024/10/11-12:26:24.059460 50a4 	kZSTDNotFinalCompression supported: 0
+2024/10/11-12:26:24.059464 50a4 Fast CRC32 supported: Not supported on x86
+2024/10/11-12:26:24.059468 50a4 DMutex implementation: std::mutex
+2024/10/11-12:26:24.066328 50a4               Options.comparator: leveldb.BytewiseComparator
+2024/10/11-12:26:24.066341 50a4           Options.merge_operator: None
+2024/10/11-12:26:24.066345 50a4        Options.compaction_filter: None
+2024/10/11-12:26:24.066349 50a4        Options.compaction_filter_factory: None
+2024/10/11-12:26:24.066352 50a4  Options.sst_partitioner_factory: None
+2024/10/11-12:26:24.066356 50a4         Options.memtable_factory: SkipListFactory
+2024/10/11-12:26:24.066359 50a4            Options.table_factory: BlockBasedTable
+2024/10/11-12:26:24.066399 50a4            table_factory options:   flush_block_policy_factory: FlushBlockBySizePolicyFactory (0000024EEBB258F0)
+  cache_index_and_filter_blocks: 0
+  cache_index_and_filter_blocks_with_high_priority: 1
+  pin_l0_filter_and_index_blocks_in_cache: 0
+  pin_top_level_index_and_filter: 1
+  index_type: 0
+  data_block_index_type: 0
+  index_shortening: 1
+  data_block_hash_table_util_ratio: 0.750000
+  checksum: 4
+  no_block_cache: 0
+  block_cache: 0000024EEFCF3F40
+  block_cache_name: LRUCache
+  block_cache_options:
+    capacity : 33554432
+    num_shard_bits : 6
+    strict_capacity_limit : 0
+    memory_allocator : None
+    high_pri_pool_ratio: 0.500
+    low_pri_pool_ratio: 0.000
+  persistent_cache: 0000000000000000
+  block_size: 4096
+  block_size_deviation: 10
+  block_restart_interval: 16
+  index_block_restart_interval: 1
+  metadata_block_size: 4096
+  partition_filters: 0
+  use_delta_encoding: 1
+  filter_policy: nullptr
+  whole_key_filtering: 1
+  verify_compression: 0
+  read_amp_bytes_per_bit: 0
+  format_version: 5
+  enable_index_compression: 1
+  block_align: 0
+  max_auto_readahead_size: 262144
+  prepopulate_block_cache: 0
+  initial_auto_readahead_size: 8192
+  num_file_reads_for_auto_readahead: 2
+2024/10/11-12:26:24.066404 50a4        Options.write_buffer_size: 67108864
+2024/10/11-12:26:24.066439 50a4  Options.max_write_buffer_number: 2
+2024/10/11-12:26:24.066452 50a4          Options.compression: Snappy
+2024/10/11-12:26:24.066457 50a4                  Options.bottommost_compression: Disabled
+2024/10/11-12:26:24.066461 50a4       Options.prefix_extractor: nullptr
+2024/10/11-12:26:24.066464 50a4   Options.memtable_insert_with_hint_prefix_extractor: nullptr
+2024/10/11-12:26:24.066468 50a4             Options.num_levels: 7
+2024/10/11-12:26:24.066471 50a4        Options.min_write_buffer_number_to_merge: 1
+2024/10/11-12:26:24.066475 50a4     Options.max_write_buffer_number_to_maintain: 0
+2024/10/11-12:26:24.066479 50a4     Options.max_write_buffer_size_to_maintain: 0
+2024/10/11-12:26:24.066483 50a4            Options.bottommost_compression_opts.window_bits: -14
+2024/10/11-12:26:24.066487 50a4                  Options.bottommost_compression_opts.level: 32767
+2024/10/11-12:26:24.066490 50a4               Options.bottommost_compression_opts.strategy: 0
+2024/10/11-12:26:24.066494 50a4         Options.bottommost_compression_opts.max_dict_bytes: 0
+2024/10/11-12:26:24.066498 50a4         Options.bottommost_compression_opts.zstd_max_train_bytes: 0
+2024/10/11-12:26:24.066501 50a4         Options.bottommost_compression_opts.parallel_threads: 1
+2024/10/11-12:26:24.066505 50a4                  Options.bottommost_compression_opts.enabled: false
+2024/10/11-12:26:24.066509 50a4         Options.bottommost_compression_opts.max_dict_buffer_bytes: 0
+2024/10/11-12:26:24.066512 50a4         Options.bottommost_compression_opts.use_zstd_dict_trainer: true
+2024/10/11-12:26:24.066516 50a4            Options.compression_opts.window_bits: -14
+2024/10/11-12:26:24.066519 50a4                  Options.compression_opts.level: 32767
+2024/10/11-12:26:24.066525 50a4               Options.compression_opts.strategy: 0
+2024/10/11-12:26:24.066530 50a4         Options.compression_opts.max_dict_bytes: 0
+2024/10/11-12:26:24.066534 50a4         Options.compression_opts.zstd_max_train_bytes: 0
+2024/10/11-12:26:24.066538 50a4         Options.compression_opts.use_zstd_dict_trainer: true
+2024/10/11-12:26:24.066541 50a4         Options.compression_opts.parallel_threads: 1
+2024/10/11-12:26:24.066545 50a4                  Options.compression_opts.enabled: false
+2024/10/11-12:26:24.066548 50a4         Options.compression_opts.max_dict_buffer_bytes: 0
+2024/10/11-12:26:24.066552 50a4      Options.level0_file_num_compaction_trigger: 4
+2024/10/11-12:26:24.066555 50a4          Options.level0_slowdown_writes_trigger: 20
+2024/10/11-12:26:24.066559 50a4              Options.level0_stop_writes_trigger: 36
+2024/10/11-12:26:24.066562 50a4                   Options.target_file_size_base: 67108864
+2024/10/11-12:26:24.066566 50a4             Options.target_file_size_multiplier: 1
+2024/10/11-12:26:24.066570 50a4                Options.max_bytes_for_level_base: 268435456
+2024/10/11-12:26:24.066574 50a4 Options.level_compaction_dynamic_level_bytes: 1
+2024/10/11-12:26:24.066579 50a4          Options.max_bytes_for_level_multiplier: 10.000000
+2024/10/11-12:26:24.066583 50a4 Options.max_bytes_for_level_multiplier_addtl[0]: 1
+2024/10/11-12:26:24.066587 50a4 Options.max_bytes_for_level_multiplier_addtl[1]: 1
+2024/10/11-12:26:24.066590 50a4 Options.max_bytes_for_level_multiplier_addtl[2]: 1
+2024/10/11-12:26:24.066594 50a4 Options.max_bytes_for_level_multiplier_addtl[3]: 1
+2024/10/11-12:26:24.066597 50a4 Options.max_bytes_for_level_multiplier_addtl[4]: 1
+2024/10/11-12:26:24.066601 50a4 Options.max_bytes_for_level_multiplier_addtl[5]: 1
+2024/10/11-12:26:24.066604 50a4 Options.max_bytes_for_level_multiplier_addtl[6]: 1
+2024/10/11-12:26:24.066608 50a4       Options.max_sequential_skip_in_iterations: 8
+2024/10/11-12:26:24.066611 50a4                    Options.max_compaction_bytes: 1677721600
+2024/10/11-12:26:24.066615 50a4   Options.ignore_max_compaction_bytes_for_input: true
+2024/10/11-12:26:24.066619 50a4                        Options.arena_block_size: 1048576
+2024/10/11-12:26:24.066622 50a4   Options.soft_pending_compaction_bytes_limit: 68719476736
+2024/10/11-12:26:24.066626 50a4   Options.hard_pending_compaction_bytes_limit: 274877906944
+2024/10/11-12:26:24.066630 50a4                Options.disable_auto_compactions: 0
+2024/10/11-12:26:24.066635 50a4                        Options.compaction_style: kCompactionStyleLevel
+2024/10/11-12:26:24.066639 50a4                          Options.compaction_pri: kMinOverlappingRatio
+2024/10/11-12:26:24.066642 50a4 Options.compaction_options_universal.size_ratio: 1
+2024/10/11-12:26:24.066646 50a4 Options.compaction_options_universal.min_merge_width: 2
+2024/10/11-12:26:24.066650 50a4 Options.compaction_options_universal.max_merge_width: 4294967295
+2024/10/11-12:26:24.066654 50a4 Options.compaction_options_universal.max_size_amplification_percent: 200
+2024/10/11-12:26:24.066657 50a4 Options.compaction_options_universal.compression_size_percent: -1
+2024/10/11-12:26:24.066661 50a4 Options.compaction_options_universal.stop_style: kCompactionStopStyleTotalSize
+2024/10/11-12:26:24.066665 50a4 Options.compaction_options_fifo.max_table_files_size: 1073741824
+2024/10/11-12:26:24.066668 50a4 Options.compaction_options_fifo.allow_compaction: 0
+2024/10/11-12:26:24.066689 50a4                   Options.table_properties_collectors: 
+2024/10/11-12:26:24.066692 50a4                   Options.inplace_update_support: 0
+2024/10/11-12:26:24.066696 50a4                 Options.inplace_update_num_locks: 10000
+2024/10/11-12:26:24.066700 50a4               Options.memtable_prefix_bloom_size_ratio: 0.000000
+2024/10/11-12:26:24.066703 50a4               Options.memtable_whole_key_filtering: 0
+2024/10/11-12:26:24.066707 50a4   Options.memtable_huge_page_size: 0
+2024/10/11-12:26:24.066710 50a4                           Options.bloom_locality: 0
+2024/10/11-12:26:24.066741 50a4                    Options.max_successive_merges: 0
+2024/10/11-12:26:24.066746 50a4                Options.optimize_filters_for_hits: 0
+2024/10/11-12:26:24.066750 50a4                Options.paranoid_file_checks: 0
+2024/10/11-12:26:24.066754 50a4                Options.force_consistency_checks: 1
+2024/10/11-12:26:24.066757 50a4                Options.report_bg_io_stats: 0
+2024/10/11-12:26:24.066761 50a4                               Options.ttl: 2592000
+2024/10/11-12:26:24.066765 50a4          Options.periodic_compaction_seconds: 0
+2024/10/11-12:26:24.066769 50a4                        Options.default_temperature: kUnknown
+2024/10/11-12:26:24.066773 50a4  Options.preclude_last_level_data_seconds: 0
+2024/10/11-12:26:24.066776 50a4    Options.preserve_internal_time_seconds: 0
+2024/10/11-12:26:24.066780 50a4                       Options.enable_blob_files: false
+2024/10/11-12:26:24.066783 50a4                           Options.min_blob_size: 0
+2024/10/11-12:26:24.066787 50a4                          Options.blob_file_size: 268435456
+2024/10/11-12:26:24.066791 50a4                   Options.blob_compression_type: NoCompression
+2024/10/11-12:26:24.066795 50a4          Options.enable_blob_garbage_collection: false
+2024/10/11-12:26:24.066799 50a4      Options.blob_garbage_collection_age_cutoff: 0.250000
+2024/10/11-12:26:24.066803 50a4 Options.blob_garbage_collection_force_threshold: 1.000000
+2024/10/11-12:26:24.066807 50a4          Options.blob_compaction_readahead_size: 0
+2024/10/11-12:26:24.066811 50a4                Options.blob_file_starting_level: 0
+2024/10/11-12:26:24.066814 50a4         Options.experimental_mempurge_threshold: 0.000000
+2024/10/11-12:26:24.066818 50a4            Options.memtable_max_range_deletions: 0
+2024/10/11-12:26:24.130527 50a4 DB pointer 0000024EF03AC580

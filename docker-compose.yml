@@ -4,11 +4,11 @@ services:
   llama-server:
     build: ./server
     volumes:
-      - ./llama_model:/app/llama_model
+      - ./llama_model:/llama_model
       - ./llama_service_pb2.py:/app/llama_service_pb2.py
       - ./llama_service_pb2_grpc.py:/app/llama_service_pb2_grpc.py
     environment:
-      - PYTHONPATH=/app
+      - PYTHONPATH=/server
     ports:
       - "50051:50051"
     depends_on:

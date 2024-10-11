@@ -3,7 +3,7 @@ import grpc
 from concurrent import futures
 import llama_service_pb2
 import llama_service_pb2_grpc
-from llama_model import LlamaModel
+from llama_model.llama_model import LlamaModel
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
 import os
