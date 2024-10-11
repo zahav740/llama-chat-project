@@ -1,0 +1,5 @@
+# server/requirements.txt
+grpcio
+grpcio-tools
+python-dotenv
+qdrant-client

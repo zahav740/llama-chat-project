@@ -1,0 +1,3 @@
+# llama_model/requirements.txt
+transformers
+torch

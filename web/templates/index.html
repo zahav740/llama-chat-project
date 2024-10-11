@@ -1,0 +1,43 @@
+# HTML шаблон для веб-интерфейса
+index_html = '''
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llama Chat</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div id="chat-messages" class="mb-3"></div>
+            </div>
+            <div class="card-footer d-flex">
+                <input type="text" id="user-input" class="form-control mr-2" placeholder="Введите ваше сообщение...">
+                <button class="btn btn-primary" onclick="sendMessage()">Отправить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var message = $('#user-input').val();
+            $('#chat-messages').append('<p><strong>Вы:</strong> ' + message + '</p>');
+            $.ajax({
+                url: '/process',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({text: message}),
+                success: function(response) {
+                    $('#chat-messages').append('<p><strong>Llama:</strong> ' + response.response + '</p>');
+                }
+            });
+            $('#user-input').val('');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+# protos/llama_service.proto
+syntax = "proto3";
+
+package llama_service;
+
+service LlamaService {
+  rpc ProcessMessage (MessageRequest) returns (MessageResponse) {}
+}
+
+message MessageRequest {
+  string text = 1;
+}
+
+message MessageResponse {
+  string response = 1;
+}
+
+# server/llama_server.py
+import grpc
+from concurrent import futures
+import llama_service_pb2
+import llama_service_pb2_grpc
+from llama_model import LlamaModel
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, VectorParams
+import os
+from dotenv import load_dotenv
+import uuid
+from datetime import datetime, timedelta
+
+load_dotenv()
+
+llama_model = LlamaModel()
+qdrant_client = QdrantClient("qdrant", port=6333)
+
+# Создание коллекции, если она не существует
+try:
+    qdrant_client.create_collection(
+        collection_name="conversation_history",
+        vectors_config=VectorParams(size=384, distance=Distance.COSINE),
+    )
+except Exception as e:
+    print(f"Collection already exists or error: {e}")
+
+class LlamaServicer(llama_service_pb2_grpc.LlamaServiceServicer):
+    def ProcessMessage(self, request, context):
+        input_text = request.text
+        
+        embedding = llama_model.create_embedding(input_text)
+
+        # Поиск релевантного контекста с учетом времени
+        search_results = qdrant_client.search(
+            collection_name="conversation_history",
+            query_vector=embedding,
+            limit=10,
+            query_filter={
+                "created_at": {
+                    "$gte": (datetime.now() - timedelta(days=30)).timestamp()
+                }
+            }
+        )
+
+        # Сортировка результатов по релевантности и времени
+        sorted_results = sorted(
+            search_results,
+            key=lambda x: (x.score, x.payload.get('created_at', 0)),
+            reverse=True
+        )
+
+        # Выбор топ-5 результатов
+        top_results = sorted_results[:5]
+
+        context = "\n".join([result.payload.get('text', '') for result in top_results])
+
+        response = llama_model.generate_response(f"Контекст: {context}\n\nВопрос: {input_text}\n\nОтвет:")
+
+        # Сохранение нового вектора с метаданными
+        qdrant_client.upsert(
+            collection_name="conversation_history",
+            points=[
+                (
+                    str(uuid.uuid4()),
+                    embedding,
+                    {
+                        "text": input_text,
+                        "created_at": datetime.now().timestamp(),
+                        "importance": 1.0  # Начальная оценка важности
+                    }
+                )
+            ]
+        )
+
+        return llama_service_pb2.MessageResponse(response=response)
+
+    def PeriodicSummary(self):
+        # Метод для периодического обобщения и обновления долгосрочной памяти
+        recent_conversations = qdrant_client.scroll(
+            collection_name="conversation_history",
+            limit=1000,
+            query_filter={
+                "created_at": {
+                    "$gte": (datetime.now() - timedelta(days=1)).timestamp()
+                }
+            }
+        )
+
+        summary_text = "Обобщение последних разговоров:\n"
+        for conv in recent_conversations[0]:
+            summary_text += f"- {conv.payload.get('text', '')}\n"
+
+        summary_embedding = llama_model.create_embedding(summary_text)
+
+        qdrant_client.upsert(
+            collection_name="long_term_memory",
+            points=[
+                (
+                    str(uuid.uuid4()),
+                    summary_embedding,
+                    {
+                        "text": summary_text,
+                        "created_at": datetime.now().timestamp(),
+                        "type": "summary"
+                    }
+                )
+            ]
+        )
+
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    llama_service_pb2_grpc.add_LlamaServiceServicer_to_server(LlamaServicer(), server)
+    server.add_insecure_port('[::]:50051')
+    print("Server started on port 50051")
+    server.start()
+    server.wait_for_termination()
+
+if __name__ == '__main__':
+    serve()
+
+# server/requirements.txt
+grpcio
+grpcio-tools
+python-dotenv
+qdrant-client
+
+# llama_model/llama_model.py
+from transformers import AutoTokenizer, AutoModel
+
+class LlamaModel:
+    def __init__(self):
+        self.tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-2-7b-chat-hf")
+        self.model = AutoModel.from_pretrained("meta-llama/Llama-2-7b-chat-hf")
+
+    def create_embedding(self, text):
+        inputs = self.tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
+        outputs = self.model(**inputs)
+        return outputs.last_hidden_state.mean(dim=1).squeeze().tolist()
+
+    def generate_response(self, prompt):
+        inputs = self.tokenizer(prompt, return_tensors="pt")
+        outputs = self.model.generate(**inputs, max_length=100)
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+# llama_model/requirements.txt
+transformers
+torch
+
+# qdrant/qdrant_startup.sh
+#!/bin/bash
+qdrant
+
+# web/app.py
+from flask import Flask, request, jsonify, render_template
+import grpc
+import llama_service_pb2
+import llama_service_pb2_grpc
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/process', methods=['POST'])
+def process():
+    input_text = request.json['text']
+    
+    with grpc.insecure_channel('llama-server:50051') as channel:
+        stub = llama_service_pb2_grpc.LlamaServiceStub(channel)
+        response = stub.ProcessMessage(llama_service_pb2.MessageRequest(text=input_text))
+    
+    return jsonify({'response': response.response})
+
+if __name__ == '__main__':
+    app.run(debug=False, host='0.0.0.0', port=5000)
+
+# web/requirements.txt
+flask
+grpcio
+grpcio-tools
+
+# client/llama_client.py
+import grpc
+import llama_service_pb2
+import llama_service_pb2_grpc
+
+def run():
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = llama_service_pb2_grpc.LlamaServiceStub(channel)
+        message = input("Введите ваше сообщение: ")
+        response = stub.ProcessMessage(llama_service_pb2.MessageRequest(text=message))
+        print("Ответ от Llama:", response.response)
+
+if __name__ == '__main__':
+    run()
+
+# docker-compose.yml
+version: '3'
+
+services:
+  llama-server:
+    build: ./server
+    volumes:
+      - ./llama_model:/app/llama_model
+    environment:
+      - PYTHONPATH=/app
+    ports:
+      - "50051:50051"
+    depends_on:
+      - qdrant
+
+  web-server:
+    build: ./web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - llama-server
+
+  qdrant:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant-data:/qdrant/storage
+
+volumes:
+  qdrant-data:
+
+# README.md
+# Llama Chat Project
+
+Этот проект представляет собой чат-бот, использующий локальную версию Llama модели для обработки естественного языка и генерации ответов, с Qdrant в качестве векторной базы данных.
+
+## Установка
+
+1. Клонируйте репозиторий:
+   ```
+   git clone https://github.com/your-username/llama-chat-project.git
+   cd llama-chat-project
+   ```
+
+2. Установите зависимости для каждого компонента:
+   ```
+   pip install -r server/requirements.txt
+   pip install -r web/requirements.txt
+   pip install -r llama_model/requirements.txt
+   ```
+
+3. Убедитесь, что у вас установлен Docker и Docker Compose.
+
+4. Сгенерируйте gRPC код:
+   ```
+   python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/llama_service.proto
+   ```
+
+## Запуск
+
+1. Запустите проект с помощью Docker Compose:
+   ```
+   docker-compose up --build
+   ```
+
+2. Откройте веб-браузер и перейдите по адресу `http://localhost:5000` для использования чат-интерфейса.
+
+## Использование gRPC клиента
+
+Для тестирования gRPC сервера напрямую:
+
+```
+python client/llama_client.py
+```
+
+## Структура проекта
+
+- `protos/`: Содержит определение gRPC сервиса
+- `server/`: gRPC сервер, интегрированный с Llama моделью и Qdrant
+- `llama_model/`: Локальная версия Llama модели
+- `qdrant/`: Конфигурация для Qdrant
+- `web/`: Flask веб-сервер и HTML шаблон
+- `client/`: gRPC клиент для тестирования
+
+## Лицензия
+
+MIT

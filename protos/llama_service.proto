@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package llama_service;
+
+service LlamaService {
+  rpc ProcessMessage (MessageRequest) returns (MessageResponse) {}
+}
+
+message MessageRequest {
+  string text = 1;
+}
+
+message MessageResponse {
+  string response = 1;
+}

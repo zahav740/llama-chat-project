@@ -1,0 +1,4 @@
+# web/requirements.txt
+flask
+grpcio
+grpcio-tools
